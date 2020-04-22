@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.main {
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  &_header {
+    background-color: black;
+    height: 100px;
+    width: 100%;
+    color: white;
+    border-bottom: solid 2px purple;
+    position: fixed;
+    &_box {
+      display: flex;
+      line-height: 100px;
+      margin: 0 30px;
+      &_center {
+        font-size: 80px;
+        line-height: 100px;
+        margin: auto;
+      }
+      &_right {
+        font-size: 20px;
+      }
+    }
+  }
+  &_contents {
+    color: black;
+    margin: 120px 150px;
+    overflow: scroll;
+    border: solid 1px purple;
+    &_data {
+      padding: 5px 10px;
+      &_name {
+        font-size: 18px;
+      }
+    }
+  }
+}
