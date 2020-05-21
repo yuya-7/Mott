@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root 'posts#index'
-
   # devise_for :users, controllers: {
   #   registrations: "users/registrations",
   # }
@@ -10,5 +8,7 @@ Rails.application.routes.draw do
   #   get "user_show", to: "users/registrations#show"
   #   get "user_destroy", to: "users/sessions#index"
   # end
-  # root 'items#index'
+  root 'posts#index'
+  resources :posts, only: [:new, :create, :show, :edit]
+  
 end

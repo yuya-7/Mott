@@ -1,0 +1,17 @@
+= form_with model: @post, class: "new_posts_form", local: true do |f|
+  = render "header"
+  .new_posts
+    .new_posts_title
+      新規投稿
+    .new_posts_data
+      .new_posts_data_image
+        = image_tag 'uyunienko.jpg'
+        .new_posts_data_image_icon
+          .fa.fa-camera
+          画像を選択
+      .new_posts_data_text
+        = f.text_area :description, placeholder: '旅の想い出'
+    .new_posts_btn
+      = link_to root_path do
+        投稿する
+  = render "footer"

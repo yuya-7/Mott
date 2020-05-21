@@ -8,30 +8,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new
   end
 
-  # def create
-  #   @user = User.new(sign_up_params)
-  #   unless params[:birthday]["date_of_birth(1i)"].present? && params[:birthday]["date_of_birth(2i)"].present? && params[:birthday]["date_of_birth(3i)"].present?
-  #     flash.now[:alert] = "入力されていない項目があります"
-  #     render :new and return
-  #   end
-  #   @user.date_of_birth = Date.new(params[:birthday]["date_of_birth(1i)"].to_i, params[:birthday]["date_of_birth(2i)"].to_i, params[:birthday]["date_of_birth(3i)"].to_i)
-  #   unless @user.valid?
-  #     render :new and return
-  #   end
-  #   session["devise.regist_data"] = {user: @user.attributes}
-  #   session["devise.regist_data"][:user]["password"] = params[:user][:password]
-  #   render :new_address
-  # end
+  def create
+    @user = User.new(sign_up_params)
+    unless params[:birthday]["date_of_birth(1i)"].present? && params[:birthday]["date_of_birth(2i)"].present? && params[:birthday]["date_of_birth(3i)"].present?
+      flash.now[:alert] = "入力されていない項目があります"
+      render :new and return
+    end
+    @user.date_of_birth = Date.new(params[:birthday]["date_of_birth(1i)"].to_i, params[:birthday]["date_of_birth(2i)"].to_i, params[:birthday]["date_of_birth(3i)"].to_i)
+    unless @user.valid?
+      render :new and return
+    end
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+  end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+  end
 
   # PUT /resource
   # def update
