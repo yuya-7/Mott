@@ -1,9 +1,19 @@
 .main_header
   .main_header_box
-    .main_header_box_center
+    .main_header_box_left
       =link_to root_path do
         Mott
+    .main_header_box_center
+      = form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |form|
+        = form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input"
+        = form.submit "検索", class: "search-btn"
     .main_header_box_right
-      = fa_icon 'user', class: 'head_icon'
-      = fa_icon 'search', class: 'head_icon'
-      = fa_icon 'edit', class: 'head_icon'
+      - if user_signed_in?
+        = link_to user_show_path(current_user) do
+          = fa_icon 'user', class: 'head_left_icon'
+        = link_to new_post_path do
+          = fa_icon 'edit', class: 'head_right_icon'
+      - else
+        = link_to new_user_session_path do
+          = fa_icon 'user', class: 'head_left_icon'
+          = fa_icon 'edit', class: 'head_right_icon'

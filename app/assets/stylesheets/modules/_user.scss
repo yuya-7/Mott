@@ -1,0 +1,46 @@
+.user {
+  margin:0 400px;
+  height: 100%;
+  border: solid 1px orange;
+  text-align: center;
+  padding: 40px 0;
+  font-weight: bold;
+  &_field {
+    padding: 30px 0;
+  }
+  a{
+    color: gray;
+    font-weight: normal;
+  }
+  &_text{
+    color: gray;
+  }
+}
+
+.user_field_form {
+  width: 80%;
+  margin-top: 10px;
+  text-align: center;
+  resize: none;
+  &_name {
+    margin-top: 10px;
+    text-align: center;
+    width: 40%;
+  }
+}
+
+.user_field_btn {
+  margin: 20px 0;
+  padding: 10px 0;
+  width: 80%;
+  background-color: orange;
+  cursor: pointer;
+}
+
+select{
+  height: 30px;
+  width: 23%;
+  background-color: white;
+  font-size: 15px;
+  font-weight: inherit;
+}

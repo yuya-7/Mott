@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.head_icon{
+.head_right_icon{
   padding-left: 5px;
 }
 
@@ -13,7 +13,11 @@ img {
 a {
   text-decoration: none;
   color: white;
-  cursor: pointer;
+}
+
+.search-input {
+  width: 300px;
+  padding: 0 5px;
 }
 
 @mixin bar {
@@ -31,10 +35,13 @@ a {
     display: flex;
     line-height: 100px;
     margin: 0 30px;
-    &_center {
+    &_left {
       font-size: 80px;
       line-height: 100px;
       margin: auto;
+    }
+    &_center {
+      padding-right: 150px;
     }
     &_right {
       font-size: 20px;
@@ -58,7 +65,7 @@ a {
       font-style: italic;
     }
     &_place {
-      font-weight: bold;
+      font-weight: lighter;
     }
   }
   &_text {

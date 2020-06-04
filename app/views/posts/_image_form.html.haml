@@ -1,0 +1,56 @@
+= form_with model: @post, class: "image_form", local: true do |f|
+  .image-box
+    .image-box__name
+      画像
+      .image-box__name-require
+        必須
+    .image-box__fields
+      #image-box
+        - if @post.persisted?
+          = f.fields_for :posts, :post do |i|
+            .js-file_group{data: {index: i.index.to_s}}
+              .preview-none
+                .js-image-zone
+                  - if item.persisted?
+                    = image_tag @post.images[i.index].image.url, data: { index: i.index }, width: "50px", height: "50px"
+                .js-edit 変更
+                .js-remove 削除
+              %label.input
+                .input__box
+                  .input__box__cam-icon
+                    %i.fa.fa-camera.fa-lg
+                  %p.input__box__p
+                    ここをクリックしてアップロード
+                = i.file_field :image, class: 'js-file', style: 'display:none'
+            - if item.persisted?
+              = i.check_box :_destroy, data:{ index: i.index }, class: "hidden-destroy"
+        - else
+          = f.fields_for :images, @post do |i|
+            .js-file_group{data: {index: i.index.to_s}}
+              .preview-none
+                .js-image-zone
+                  - if @post.persisted?
+                    = image_tag post.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
+                .js-edit 変更
+                .js-remove 削除
+              %label.input
+                .input__box
+                  .input__box__cam-icon
+                    %i.fa.fa-camera.fa-lg
+                  %p.input__box__p
+                    ここをクリックしてアップロード
+                = i.file_field :image, class: 'js-file', style: 'display:none'
+        - if @post.persisted?
+          .js-file_group{data: {index: item.images.count}}
+            .preview-none
+              .js-image-zone
+              .js-edit 変更
+              .js-remove 削除
+            %label.input
+              = file_field_tag :image, name: "item[images_attributes][#{item.images.count}][image]", class: 'js-file', style: "display:none"
+              .input__box
+                .input__box__cam-icon
+                  %i.fa.fa-camera.fa-lg
+                %p.input__box__p
+                  ここをクリックしてアップロード
+      #how-many-image

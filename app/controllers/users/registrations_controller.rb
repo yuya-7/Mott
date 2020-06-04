@@ -18,12 +18,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless @user.valid?
       render :new and return
     end
+    @user.save
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    sign_in(:user, @user)
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   # PUT /resource
   # def update
@@ -34,6 +36,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def destroy
   #   super
   # end
+
+  def show
+    @user = User.find_by(id: current_user.id)
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

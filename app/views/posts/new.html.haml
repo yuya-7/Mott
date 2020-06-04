@@ -1,17 +1,17 @@
-= form_with model: @post, class: "new_posts_form", local: true do |f|
+= form_with(url: new_post_path, local: true, method: :get) do |f|
   = render "header"
   .new_posts
     .new_posts_title
       新規投稿
     .new_posts_data
       .new_posts_data_image
-        = image_tag 'uyunienko.jpg'
         .new_posts_data_image_icon
           .fa.fa-camera
-          画像を選択
+          = f.file_field :images, class: 'post_image'
       .new_posts_data_text
-        = f.text_area :description, placeholder: '旅の想い出'
+        = f.text_area :introduction, autofocus: true, placeholder: '旅の想い出'
+        .new_posts_data_text_place
+          = f.text_area :name, autofocus: true, placeholder: '行き先'
     .new_posts_btn
-      = link_to root_path do
-        投稿する
-  = render "footer"
+      = f.submit "投稿する"
+= render "footer"
